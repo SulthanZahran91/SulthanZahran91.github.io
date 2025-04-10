@@ -1,0 +1,21 @@
+---
+const currentYear = new Date().getFullYear();
+---
+<footer>
+	© {currentYear} Sulthan Zahran Ma'ruf. Powered by Astro. Hosted by GitHub Pages.
+    </footer>
+
+<style>
+	footer {
+		text-align: center;
+		padding: 1.5rem 1rem;
+		font-size: 0.8rem;
+		color: #888;
+		margin-top: 2rem;
+        border-top: 1px solid #eee;
+	}
+    body.dark footer {
+        color: #aaa;
+        border-top-color: #444;
+    }
+</style>

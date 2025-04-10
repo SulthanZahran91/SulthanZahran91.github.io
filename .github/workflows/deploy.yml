@@ -1,0 +1,63 @@
+# .github/workflows/deploy.yml
+
+name: Deploy to GitHub Pages with Bun
+
+on:
+  # Trigger the workflow every time you push to the `main` branch
+  # Use `master` or your default branch if not `main`
+  push:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab on GitHub.
+  workflow_dispatch:
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+
+      # Use the official Bun setup action
+      # This installs Bun and a compatible version of Node.js
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        # You can specify a Bun version if needed:
+        # with:
+        #   bun-version: latest # or a specific version like "1.0.25"
+
+      # Install dependencies using Bun.
+      # '--frozen-lockfile' ensures installs match your bun.lockb exactly.
+      # Use 'bun install' if you don't have/use a lockfile.
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # Build the site using the 'build' script defined in your package.json
+      - name: Build your site
+        run: bun run build
+
+      # Upload the build artifact from the default 'dist' directory
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Astro's default build output directory
+          path: ./dist
+
+  deploy:
+    # Requires the build job to complete successfully
+    needs: build
+    runs-on: ubuntu-latest
+    # Specifies the target environment for GitHub Pages deployment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Deploys the artifact previously uploaded by the 'build' job
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

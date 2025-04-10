@@ -1,0 +1,66 @@
+---
+const currentPath = Astro.url.pathname;
+const isActive = (href) => {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath === href || currentPath.startsWith(href + '/');
+}
+---
+
+<header>
+	<nav>
+        <a href="/" class:list={[{ active: isActive('/') }]}>about</a>
+		<a href="/cv" class:list={[{ active: isActive('/cv') }]}>cv</a>
+		<a href="/projects" class:list={[{ active: isActive('/projects') }]}>projects</a>
+		<a href="/repositories" class:list={[{ active: isActive('/repositories') }]}>repositories</a>
+</header>
+
+<style>
+	header {
+		padding: 1rem;
+        max-width: 800px;
+        margin: 0 auto; /* Center nav within max-width */
+        width: 100%;
+        box-sizing: border-box; /* Include padding in width */
+	}
+	nav {
+		display: flex;
+		justify-content: flex-end; /* Right align items */
+		gap: 1rem; /* Space between links */
+	}
+    nav a, nav button {
+        color: #888; /* Lighter color for nav */
+        font-size: 0.9rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-decoration: none; /* Ensure no default underline */
+        padding-bottom: 2px; /* Add space for potential border */
+        border-bottom: 2px solid transparent; /* Placeholder for active style */
+        transition: color 0.2s ease, border-color 0.2s ease; /* Smooth transition */
+
+    }
+    nav a:hover, nav button:hover {
+        color: #333; /* Darken on hover */
+        text-decoration: none;
+    }
+    
+    nav a.active {
+        color: #333; /* Make text darker/stand out */
+        font-weight: 600; /* Slightly bolder */
+        border-bottom-color: #333; /* Example: Add an underline effect */
+    }
+
+    body.dark nav a, body.dark nav button {
+        color: #aaa;
+    }
+     body.dark nav a:hover, body.dark nav button:hover {
+        color: #eee;
+    }
+    .theme-toggle-placeholder {
+        /* Basic styling for placeholder */
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+</style>

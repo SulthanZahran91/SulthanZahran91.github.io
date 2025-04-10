@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/Layout.astro';
+
+import HorizontalTimeline from '../components/react/Timeline.jsx';
+
+
+const timelineData = [
+  {
+    id: 'lg-cns-dev',
+    date: 'Apr 2024 - Now',
+    title: 'Smart Factory Logistics Developer',
+    subtitle: 'LG CNS Indonesia / LG Sinarmas Technology Solutions',
+    location: 'Karawang, Indonesia',
+    type: 'work',
+    details: [
+      'Analyzed supply chain data and production metrics to identify and eliminate 4 major bottlenecks.',
+      'Developed an application that analyzes complex SQL queries for faster debugging.',
+      'Developed and implemented dispatch system optimizations.',
+    ]
+  },
+  {
+    id: 'polychemie-si',
+    date: 'Jan - Mar 2024',
+    title: 'System Integrator',
+    subtitle: 'PT Polychemie Asia Pacific',
+    location: 'Jakarta, Indonesia',
+    type: 'work',
+    details: [
+      'Tasked with implementing a data acquisition system for temperature and flow.',
+      'Explored DAQ, PLC, and Arduino approaches.',
+    ]
+  },
+  {
+    id: 'faan-lab-ra',
+    date: 'Oct 2023 - Mar 2024',
+    title: 'Research Assistant',
+    subtitle: 'FAAN Lab, Universitas Indonesia',
+    location: 'Jakarta, Indonesia',
+    type: 'work', 
+    details: [
+        'Engineered a Real-time Data Analyzer for advanced spectroscopic analysis using MATLAB App Designer.',
+    ]
+  },
+   {
+    id: 'mitx-cert',
+    date: 'December 2024', 
+    title: 'Supply Chain Analytics Certification',
+    subtitle: 'MITx',
+    location: 'Online',
+    type: 'certification',
+    details: [
+        'Applied advanced statistical techniques (ANOVA, control charts).',
+        'Implemented optimization methods (linear/integer programming).',
+        'Utilized probability distributions and stochastic models.',
+    ]
+  },
+   {
+    id: 'ui-edu',
+    date: '2019 - 2023',
+    title: 'Bachelor of Science in Instrumentation Physics',
+    subtitle: 'Universitas Indonesia',
+    location: 'Depok, Indonesia',
+    type: 'education',
+    details: [
+        'Thesis: Development of an Arduino-Based Automated Probe System for data acquisition and analysis.',
+    ]
+  },
+  {
+    id: 'indyscc-award',
+    date: '2022',
+    title: '4th on Hero HPL Challenge (1st South East Asian team)',
+    subtitle: 'IndySCC 22 @ ACM/IEEE Supercomputing Conference',
+    location: 'Dallas, USA',
+    type: 'award',
+    details: [
+      'Supercomputing competition involving setting up a server cluster from barebones in 72 hours to solve HPC problems.',
+    ]
+  },
+   {
+    id: 'sugitama-intern',
+    date: 'Jun - Jul 2022',
+    title: 'PLC Programmer (Internship)',
+    subtitle: 'PT Sugitama Intiarto',
+    location: 'Tangerang Selatan, Indonesia',
+    type: 'work',
+    details: [
+        'Worked on cream spreader machine programming (PLC and HMI).',
+    ]
+  },
+   {
+    id: 'robotics-club',
+    date: 'Jun 2020 - Aug 2021',
+    title: 'Programming PIC',
+    subtitle: 'Universitas Indonesia Robotics Club',
+    location: 'Jakarta, Indonesia',
+    type: 'organization', 
+    details: [
+        'Programmed Line Follower Robot.',
+        'Programmed and handled electrical for Digital Twins-based Robot.',
+        'Integrated cameras for Digital Twins Arena.',
+    ]
+  },
+  
+];
+
+---
+
+<BaseLayout title="CV - Sulthan Zahran Ma'ruf">
+  <section class="cv-section py-8 md:py-12">
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-2">Curriculum Vitae</h1>
+    <p class="text-center max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-8 md:mb-12">
+      A timeline of my professional experience, education, and key achievements. Scroll horizontally to explore.
+    </p>
+
+    {/* Render the React HorizontalTimeline component */}
+    <HorizontalTimeline data={timelineData} client:visible />
+
+  </section>
+</BaseLayout>
+
+<style is:global>
+  /* Optional: Style scrollbars for better look if desired */
+  /* Target the timeline container specifically if needed */
+  .timeline-scrollbar::-webkit-scrollbar {
+    height: 8px; /* Height of horizontal scrollbar */
+  }
+  .timeline-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+   .dark .timeline-scrollbar::-webkit-scrollbar-track {
+     background: #4b5563; /* gray-600 */
+   }
+  .timeline-scrollbar::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+   .dark .timeline-scrollbar::-webkit-scrollbar-thumb {
+     background: #d1d5db; /* gray-300 */
+   }
+  .timeline-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+   .dark .timeline-scrollbar::-webkit-scrollbar-thumb:hover {
+     background: #9ca3af; /* gray-400 */
+  }
+
+  /* Hide scrollbar by default and show on hover for container (alternative) */
+  /* .timeline-container-class { scrollbar-width: none; } // Firefox */
+  /* .timeline-container-class::-webkit-scrollbar { display: none; } // Chrome/Safari */
+  /* .timeline-container-class:hover { scrollbar-width: auto; } // Firefox */
+  /* .timeline-container-class:hover::-webkit-scrollbar { display: block; } // Chrome/Safari */
+
+</style>
