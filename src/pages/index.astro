@@ -3,62 +3,44 @@ import BaseLayout from '../layouts/Layout.astro';
 import ContactLinks from '../components/react/ContactLinks.jsx'; // Import the React component
 ---
 <BaseLayout>
-	<section class="hero">
-		<h1>Sulthan Zahran Ma'ruf</h1>
-		<h2>Software Engineer, part of LG Sinarmas.</h2>
-		<p>
-			Hello! I'm Sulthan Zahran Ma'ruf, a Physics graduate from Universitas Indonesia.
-			I currently work at LG Sinarmas Technology Solutions and I consulting company
-			formed through a joint venture between LG and Sinarmas. In my role, I help
-			develop and test smart factory solutions for manufacturing (MES) and logistics
-			(RTL) at the Hyundai-LG Indonesia EV battery factory. I'm passionate about
-			optimization, parallel computing, and instrumentation physics. Feel free to
-			reach out!
-		</p>
+    
+    <section class="hero text-center py-12 md:py-16"> 
+        
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">
+            Sulthan Zahran Ma'ruf
+        </h1>
+        <h2 class="text-xl md:text-2xl font-normal text-gray-600 dark:text-gray-400 mb-6">
+            Software Engineer, part of LG Sinarmas.
+        </h2>
+        <p class="text-lg leading-relaxed max-w-prose mx-auto text-justify mb-8"> 
+			
+            I'm Sulthan Zahran Ma'ruf, a logistics developer passionate about untangling complex operational puzzles.
+            My experience ranges from analyzing supply chain data to pinpoint smart factory logistics bottlenecks
+            and developing custom applications for faster debugging and optimization, to designing and implementing data acquisition systems.
+            I combine practical factory insights with strong analytical and technical skills to deliver measurable
+            improvements.
+        </p>
 
-		<div class="contact-links-wrapper">
-			<ContactLinks client:visible />
+        <div class="mt-8 mb-10">
+			<p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Core Technologies:</p>
+			<div class="flex flex-wrap justify-center gap-4 items-center">
+				 {/* Use SVG icons for best results - from Simple Icons (simpleicons.org) or similar */}
+				 {/* Example using <img> - replace with actual SVGs or an icon component */}
+				 
+				 <img src="/icons/python.svg" alt="Python" title="Python" class="h-10 w-10 grayscale hover:grayscale-0 transition duration-200" />
+				 <img src="/icons/sql.svg" alt="SQL" title="SQL" class="h-10 w-10 grayscale hover:grayscale-0 transition duration-200" /> {/* Example: generic db icon */}
+				 <img src="/icons/dotnet.svg" alt=".NET" title=".NET" class="h-10 w-10 grayscale hover:grayscale-0 transition duration-200" />
+				 <img src="/icons/matlab.svg" alt="MATLAB" title="MATLAB" class="h-10 w-10 grayscale hover:grayscale-0 transition duration-200" />
+				 <img src="/icons/cplusplus.svg" alt="C/C++" title="C/C++" class="h-10 w-10 grayscale hover:grayscale-0 transition duration-200" /> {/* Example: C++ logo */}
+					  
+				 {/* Add more as needed */}
+			</div>
 		</div>
 
-	</section>
+        <div class="contact-links-wrapper mt-8"> {/* Added margin-top */}
+            <ContactLinks client:load /> 
+        </div>
+
+    </section>
 </BaseLayout>
 
-<style>
-	.hero {
-        padding-top: 2rem;
-	}
-
-	h1, h2 {
-        text-align: center; 
-	}
-
-	h1 {
-		font-size: 2.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	h2 {
-		font-size: 1.2rem;
-		font-weight: normal;
-		color: #666;
-		margin-top: 0;
-        margin-bottom: 1.5rem;
-	}
-    body.dark h2 {
-        color: #ccc;
-    }
-
-	p {
-		line-height: 1.6;
-        text-align: justify; /* Justify the paragraph text */
-        max-width: 65ch;     
-        margin-left: auto;   
-        margin-right: auto;
-        margin-bottom: 2rem; 
-	}
-
-    .contact-links-wrapper {
-        text-align: center; 
-    }
-
-</style>

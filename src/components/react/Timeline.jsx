@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-function HorizontalTimeline({ data }) {
+function HorizontalTimeline({ data, typeColors }) {
   const [expandedId, setExpandedId] = useState(null);
   const handleToggle = (id) => setExpandedId(expandedId === id ? null : id);
 
@@ -95,8 +95,7 @@ function HorizontalTimeline({ data }) {
   }, [expandedId, data, baseMinHeightPx]);
 
 
-  // --- Colors ---
-  const typeColors = { /* ... */ };
+  
 
   return (
     // Outer container

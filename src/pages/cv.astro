@@ -3,6 +3,16 @@ import BaseLayout from '../layouts/Layout.astro';
 
 import HorizontalTimeline from '../components/react/Timeline.jsx';
 
+const typeColors = {
+  work: 'bg-sky-500',         // Example: Blue for work
+  education: 'bg-emerald-500', // Example: Green for education
+  certification: 'bg-amber-500', // Example: Yellow/Amber for certifications
+  award: 'bg-rose-500',       // Example: Red/Rose for awards
+  organization: 'bg-indigo-500', // Example: Indigo for organizations
+  default: 'bg-gray-400'       // Fallback color (won't be shown in legend)
+};
+
+const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
 
 const timelineData = [
   {
@@ -103,6 +113,14 @@ const timelineData = [
   
 ];
 
+const legendItems = Object.entries(typeColors)
+  .filter(([type]) => type !== 'default') 
+  .map(([type, colorClass]) => ({
+    type: capitalize(type), 
+    colorClass: colorClass  
+  }));
+
+
 ---
 
 <BaseLayout title="CV - Sulthan Zahran Ma'ruf">
@@ -112,8 +130,17 @@ const timelineData = [
       A timeline of my professional experience, education, and key achievements. Scroll horizontally to explore.
     </p>
 
+    <div class="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 mb-8 md:mb-12 px-4">
+      {legendItems.map(item => (
+        <div class="flex items-center">
+          <span class={`inline-block w-3 h-3 rounded-full mr-1.5 ${item.colorClass}`}></span>
+          <span class="text-sm text-gray-600 dark:text-gray-400">{item.type}</span>
+        </div>
+      ))}
+    </div>
+
     {/* Render the React HorizontalTimeline component */}
-    <HorizontalTimeline data={timelineData} client:visible />
+    <HorizontalTimeline data={timelineData} typeColors={typeColors} client:visible />
 
   </section>
 </BaseLayout>

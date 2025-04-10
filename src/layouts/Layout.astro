@@ -4,7 +4,7 @@ import Footer from '../components/astro/Footer.astro';
 import '../styles/global.css'; 
 
 export interface Props {
-	title?: string; // Optional title prop
+    title?: string; // Optional title prop
 }
 
 const { title = 'Sulthan Zahran Ma\'ruf - Portfolio' } = Astro.props;
@@ -12,28 +12,30 @@ const { title = 'Sulthan Zahran Ma\'ruf - Portfolio' } = Astro.props;
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<meta name="generator" content={Astro.generator} />
-	<title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
 
-	<style is:global>
-		body {
-			font-family: sans-serif;
-			margin: 0;
-			padding: 0;
-			display: flex;
-			flex-direction: column;
-			min-height: 100vh;
+    <style is:global>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             background-color: #fff; /* Light theme default */
             color: #333;
-		}
+        }
         main {
             flex-grow: 1;
-            max-width: 800px;
-            margin: 2rem auto; /* Center content */
-            padding: 0 1rem;
+            max-width: 1280px;             
+            margin: 3rem auto; /* Center content, adjust vertical space */
+            padding: 0 1rem; /* Keep horizontal padding */
+            width: 100%; /* Ensure it takes available width up to max-width */
+            box-sizing: border-box; /* Include padding in width */
         }
         a {
             color: inherit; /* Or set a specific link color */
@@ -43,25 +45,26 @@ const { title = 'Sulthan Zahran Ma\'ruf - Portfolio' } = Astro.props;
             text-decoration: underline;
         }
 
-		/* Add styles for dark mode if implementing ThemeToggle */
-		body.dark {
-			background-color: #222;
-			color: #eee;
-		}
-	</style>
+        /* Add styles for dark mode if implementing ThemeToggle */
+        body.dark {
+            background-color: #222;
+            color: #eee;
+        }
+        /* Add dark mode main color if needed, or handle via Tailwind */
+        /* body.dark main { ... } */
+    </style>
     <link rel="stylesheet" href="/global.css"> </head>
 <body>
-	<Header />
-	<main>
-		<slot /> </main>
-	<Footer />
+    <Header />
+    <main>
+        <slot /> </main>
+    <Footer />
     <script>
         // Basic script to apply dark mode if needed (can be enhanced in ThemeToggle)
-		const theme = localStorage.getItem('theme');
-		if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.body.classList.add('dark');
-		}
-	</script>
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark');
+        }
+    </script>
 </body>
 </html>
-
